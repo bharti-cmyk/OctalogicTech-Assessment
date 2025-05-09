@@ -1,26 +1,77 @@
-// components/ui/button.tsx
+import React, { ButtonHTMLAttributes } from 'react'
+import { Button as MuiButton, ButtonProps as MuiButtonProps } from '@mui/material'
 
-import { ButtonHTMLAttributes } from 'react'
-import clsx from 'clsx'
+type Variant = 'default' | 'outline' | 'ghost'
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'default' | 'outline' | 'ghost'
+type ButtonProps = MuiButtonProps & {
+  variantType?: Variant
 }
 
-import React from 'react';
-
-export const Button = ({ className, variant = 'default', ...props }: ButtonProps) => {
-    const base = 'px-4 py-2 rounded-2xl text-white font-medium transition'
-    const variants = {
-        default: 'bg-blue-600 hover:bg-blue-700',
-        outline: 'bg-transparent border border-blue-600 text-blue-600 hover:bg-blue-50',
-        ghost: 'bg-transparent hover:bg-gray-100 text-gray-800',
+export const Button = ({
+  variantType = 'default',
+  children,
+  sx,
+  ...props
+}: ButtonProps) => {
+  const getVariantProps = () => {
+    switch (variantType) {
+      case 'outline':
+        return {
+          variant: 'outlined' as const,
+          sx: {
+            borderColor: 'primary.main',
+            color: 'primary.main',
+            '&:hover': {
+              backgroundColor: 'primary.50',
+              borderColor: 'primary.main',
+            },
+            ...sx,
+          },
+        }
+      case 'ghost':
+        return {
+          variant: 'text' as const,
+          sx: {
+            color: 'text.primary',
+            '&:hover': {
+              backgroundColor: 'grey.100',
+            },
+            ...sx,
+          },
+        }
+      case 'default':
+      default:
+        return {
+          variant: 'contained' as const,
+          color: 'primary' as const,
+          sx: {
+            ...sx,
+          },
+        }
     }
+  }
 
-    return (
-        <button
-            className={clsx(base, variants[variant], className)}
-            {...props}
-        />
-    )
+  const variantProps = getVariantProps()
+
+  return (
+    <MuiButton
+      fullWidth
+      size="large"
+      sx={{
+        px: 4,
+        py: 2,
+        borderRadius: 4,
+        fontWeight: 600,
+        fontSize: '1rem',
+        textTransform: 'none',
+        transition: 'all 0.15s ease',
+        ...variantProps.sx,
+      }}
+      {...props}
+      variant={variantProps.variant}
+      color={variantProps.color}
+    >
+      {children}
+    </MuiButton>
+  )
 }

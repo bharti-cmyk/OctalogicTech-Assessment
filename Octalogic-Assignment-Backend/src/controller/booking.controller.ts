@@ -2,7 +2,7 @@ import { Request, RequestHandler, Response } from 'express';
 import { Booking } from '../models/booking.model';
 import { Op } from 'sequelize';
 
-export const createBooking: RequestHandler = async (req: Request, res: Response): Promise<void> => {
+export const createBooking: RequestHandler = async (req: Request, res: Response) => {
   try {
     const { vehicleId, userName, from, to } = req.body;
 
@@ -11,7 +11,7 @@ export const createBooking: RequestHandler = async (req: Request, res: Response)
       return;
     }
 
-    const conflict = await Booking.findOne({
+    const overlap = await Booking.findOne({
       where: {
         vehicleId,
         [Op.or]: [
@@ -27,8 +27,8 @@ export const createBooking: RequestHandler = async (req: Request, res: Response)
       }
     });
 
-    if (conflict) {
-      res.status(400).json({ message: 'Booking conflict exists.' });
+    if (overlap) {
+      res.status(400).json({ message: 'Vehicle already booked for the selected dates.' });
       return;
     }
 

@@ -1,10 +1,11 @@
 import React from 'react';
-import VehicleBookingForm from './components/VehicleBookingForm';
+import { Toaster } from 'react-hot-toast';
+import BookingPage from './pages/BookingPage';
 
 const App: React.FC = () => {
   return (
-    <div>
-      <VehicleBookingForm />
+    <div className="container">
+      <BookingPage />
     </div>
   );
 }
