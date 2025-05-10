@@ -1,57 +1,60 @@
-import React, { ButtonHTMLAttributes } from 'react'
-import { Button as MuiButton, ButtonProps as MuiButtonProps } from '@mui/material'
+import React, { ButtonHTMLAttributes } from "react";
+import {
+  Button as MuiButton,
+  ButtonProps as MuiButtonProps,
+} from "@mui/material";
 
-type Variant = 'default' | 'outline' | 'ghost'
+type Variant = "default" | "outline" | "ghost";
 
 type ButtonProps = MuiButtonProps & {
-  variantType?: Variant
-}
+  variantType?: Variant;
+};
 
 export const Button = ({
-  variantType = 'default',
+  variantType = "default",
   children,
   sx,
   ...props
 }: ButtonProps) => {
   const getVariantProps = () => {
     switch (variantType) {
-      case 'outline':
+      case "outline":
         return {
-          variant: 'outlined' as const,
+          variant: "outlined" as const,
           sx: {
-            borderColor: 'primary.main',
-            color: 'primary.main',
-            '&:hover': {
-              backgroundColor: 'primary.50',
-              borderColor: 'primary.main',
+            borderColor: "primary.main",
+            color: "primary.main",
+            "&:hover": {
+              backgroundColor: "primary.50",
+              borderColor: "primary.main",
             },
             ...sx,
           },
-        }
-      case 'ghost':
+        };
+      case "ghost":
         return {
-          variant: 'text' as const,
+          variant: "text" as const,
           sx: {
-            color: 'text.primary',
-            '&:hover': {
-              backgroundColor: 'grey.100',
+            color: "text.primary",
+            "&:hover": {
+              backgroundColor: "grey.100",
             },
             ...sx,
           },
-        }
-      case 'default':
+        };
+      case "default":
       default:
         return {
-          variant: 'contained' as const,
-          color: 'primary' as const,
+          variant: "contained" as const,
+          color: "primary" as const,
           sx: {
             ...sx,
           },
-        }
+        };
     }
-  }
+  };
 
-  const variantProps = getVariantProps()
+  const variantProps = getVariantProps();
 
   return (
     <MuiButton
@@ -62,9 +65,9 @@ export const Button = ({
         py: 2,
         borderRadius: 4,
         fontWeight: 600,
-        fontSize: '1rem',
-        textTransform: 'none',
-        transition: 'all 0.15s ease',
+        fontSize: "1rem",
+        textTransform: "none",
+        transition: "all 0.15s ease",
         ...variantProps.sx,
       }}
       {...props}
@@ -73,5 +76,5 @@ export const Button = ({
     >
       {children}
     </MuiButton>
-  )
-}
+  );
+};

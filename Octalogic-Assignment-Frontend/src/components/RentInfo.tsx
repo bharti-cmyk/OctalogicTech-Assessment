@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Typography, List, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import {
+  Box,
+  Typography,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import { FaCheckCircle } from "react-icons/fa";
 
 const features = [
@@ -18,7 +25,8 @@ const RentInfo = () => {
         Rent a Vehicle
       </Typography>
       <Typography variant="body1" color="textSecondary" paragraph>
-        Create your booking and explore a flexible, affordable, and reliable way to get around.
+        Create your booking and explore a flexible, affordable, and reliable way
+        to get around.
       </Typography>
       <List>
         {features.map((feature, idx) => (
@@ -26,7 +34,10 @@ const RentInfo = () => {
             <ListItemIcon sx={{ minWidth: 32, color: "green" }}>
               <FaCheckCircle />
             </ListItemIcon>
-            <ListItemText primary={feature} primaryTypographyProps={{ color: "textPrimary" }} />
+            <ListItemText
+              primary={feature}
+              primaryTypographyProps={{ color: "textPrimary" }}
+            />
           </ListItem>
         ))}
       </List>

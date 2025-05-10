@@ -1,6 +1,6 @@
-import React from 'react';
-import { Toaster } from 'react-hot-toast';
-import BookingPage from './pages/BookingPage';
+import React from "react";
+import { Toaster } from "react-hot-toast";
+import BookingPage from "./pages/BookingPage";
 
 const App: React.FC = () => {
   return (
@@ -8,6 +8,6 @@ const App: React.FC = () => {
       <BookingPage />
     </div>
   );
-}
+};
 
 export default App;

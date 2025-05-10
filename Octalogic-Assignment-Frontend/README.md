@@ -20,9 +20,9 @@ git clone https://github.com/bharti-cmyk/OctalogicTech-Assessment
 cd Octalogic-Assignment-Frontend
 
 2. Install Dependencies
-npm install
+   npm install
 
 3. Fix backend Endpoint in src/config.ts file
 
 4. Run the Development Server
-npm start
+   npm start

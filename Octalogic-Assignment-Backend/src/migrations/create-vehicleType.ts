@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
-  async up(queryInterface:any, Sequelize:any) {
-    await queryInterface.createTable('vehicleTypes', {
+  async up(queryInterface: any, Sequelize: any) {
+    await queryInterface.createTable("vehicleTypes", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,23 +14,23 @@ module.exports = {
         allowNull: false,
       },
       category: {
-        type: Sequelize.ENUM('car', 'bike'),
+        type: Sequelize.ENUM("car", "bike"),
         allowNull: false,
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('NOW')
+        defaultValue: Sequelize.fn("NOW"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('NOW')
+        defaultValue: Sequelize.fn("NOW"),
       },
     });
   },
 
-  async down(queryInterface:any) {
-    await queryInterface.dropTable('vehicleTypes');
+  async down(queryInterface: any) {
+    await queryInterface.dropTable("vehicleTypes");
   },
 };

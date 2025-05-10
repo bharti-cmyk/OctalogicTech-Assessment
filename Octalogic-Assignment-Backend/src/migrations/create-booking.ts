@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 
 module.exports = {
   async up(queryInterface: any, Sequelize: any) {
-    await queryInterface.createTable('bookings', {
+    await queryInterface.createTable("bookings", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -24,25 +24,25 @@ module.exports = {
       vehicleId: {
         type: Sequelize.INTEGER,
         references: {
-          model: 'vehicles',
-          key: 'id',
+          model: "vehicles",
+          key: "id",
         },
-        onDelete: 'CASCADE',
+        onDelete: "CASCADE",
       },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('NOW')
+        defaultValue: Sequelize.fn("NOW"),
       },
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Sequelize.fn('NOW')
+        defaultValue: Sequelize.fn("NOW"),
       },
     });
   },
 
   async down(queryInterface: any) {
-    await queryInterface.dropTable('bookings');
+    await queryInterface.dropTable("bookings");
   },
 };
